@@ -4,7 +4,7 @@ import numpy
 import time
 
 if torch.cuda.is_available():
-  torch.set_default_tensor_type(torch.cuda.FloatTensor)
+#  torch.set_default_tensor_type(torch.cuda.FloatTensor)
   print("using:", torch.cuda.get_device_name(0))
   pass
 
