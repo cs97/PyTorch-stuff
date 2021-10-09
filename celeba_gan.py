@@ -342,6 +342,8 @@ def print_one_result():
 # Main
 #==================================================================================
 def main():
+    global D
+    global G
     while True:
 
         print("1. generate gan")
