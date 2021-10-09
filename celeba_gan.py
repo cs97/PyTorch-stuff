@@ -361,15 +361,12 @@ def main():
             G = Generator()
             G.to(device)
 
-
         if cmd == "2":
             D = torch.load("d.pt")
-
-        G = torch.load("g.pt")
+            G = torch.load("g.pt")
 
         if cmd == "3":
             torch.save(D, "d.pt")
-
             torch.save(G, "g.pt")
 
         if cmd == "4":
