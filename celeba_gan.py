@@ -1,4 +1,9 @@
-
+#!/bin/python3
+#
+#pip install pandas
+#pip install numpy
+#pip install matplotlib
+#pip install h5py
 
 import torch
 import torch.nn as nn
