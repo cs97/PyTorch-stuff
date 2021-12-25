@@ -160,14 +160,11 @@ class Discriminator(nn.Module):
 
         # create loss function
         #self.loss_function = nn.MSELoss()
-        #S.96
         self.loss_function = nn.BCELoss()
-
 
         # create optimiser, simple stochastic gradient descent
         #self.optimiser = torch.optim.SGD(self.parameters(), lr=0.01)
         self.optimiser = torch.optim.Adam(self.parameters(), lr=0.0001)
-
 
         # counter and accumulator for progress
         self.counter = 0;
@@ -240,7 +237,6 @@ class Generator(nn.Module):
         # create optimiser, simple stochastic gradient descent
         #self.optimiser = torch.optim.SGD(self.parameters(), lr=0.01)
         self.optimiser = torch.optim.Adam(self.parameters(), lr=0.0001)
-
 
         # counter and accumulator for progress
         self.counter = 0;
