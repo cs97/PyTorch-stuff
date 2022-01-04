@@ -1,5 +1,5 @@
 # PyTorch-stuff
-### Python3.10 PyTorch-stuff
+### gan-tool
 
 ```
 gan-tool > progress
