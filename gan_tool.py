@@ -123,106 +123,58 @@ def main():
     global D
     global G
     while True:
+      
         cmd = input("gan-tool > ")
+        #cmd = "help"
 
-        if cmd == "help":
-            print("")
-            print("gen\t\tgenerate gan")
-            print("import\t\timport gan")
-            print("save\t\tsave gan")
-            print("train\t\ttrain once")
-            print("progress\tprint progress")
-            print("results\t\tprint results")
-            print("exit")
+        match cmd:
 
-        if cmd == "gen":
-            netz.inputsize = inputsize
-            netz.generatorinput = generatorinput
+            case "gen":
+                netz.inputsize = inputsize
+                netz.generatorinput = generatorinput
+                D = netz.Discriminator2()
+                D.to(device)
+                G = netz.Generator()
+                G.to(device)
 
-            D = netz.Discriminator2()
-            D.to(device)
-            G = netz.Generator()
-            G.to(device)
+            case "import":
+                D = torch.load("d.pt")
+                G = torch.load("g.pt")
 
-        if cmd == "import":
-            D = torch.load("d.pt")
-            G = torch.load("g.pt")
+            case "save":
+                torch.save(D, "d.pt")
+                torch.save(G, "g.pt")
 
-        if cmd == "save":
-            torch.save(D, "d.pt")
-            torch.save(G, "g.pt")
+            case "train":
+                start = time.time()
+                train_gan()
+                end = time.time()
+                print('time: %f min' % ((end - start)/60))
 
-        if cmd == "train":
-            start = time.time()
-            train_gan()
-            end = time.time()
-            print('time: %f min' % ((end - start)/60))
+            case "progress":
+                D.plot_progress()
+                G.plot_progress()
 
-        if cmd == "progress":
-            D.plot_progress()
-            G.plot_progress()
+            case "results":
+                print_result()
 
-        if cmd == "results":
-            print_result()
+            case "exit":
+                return
 
-        if cmd == "exit":
-            break
-
-
-
-
-def menu():
-    cmd = input("gan-tool > ")
-    #cmd = "help"
-
-    match cmd:
-
-        case "gen":
-            netz.inputsize = inputsize
-            netz.generatorinput = generatorinput
-            D = netz.Discriminator2()
-            D.to(device)
-            G = netz.Generator()
-            G.to(device)
-
-        case "import":
-            D = torch.load("d.pt")
-            G = torch.load("g.pt")
-
-        case "save":
-            torch.save(D, "d.pt")
-            torch.save(G, "g.pt")
-
-        case "train":
-            start = time.time()
-            train_gan()
-            end = time.time()
-            print('time: %f min' % ((end - start)/60))
-
-        case "progress":
-            D.plot_progress()
-            G.plot_progress()
-
-        case "results":
-            print_result()
-
-        case "exit":
-            return
-
-        case _:
-            print("")
-            print("gen\t\tgenerate gan")
-            print("import\t\timport gan")
-            print("save\t\tsave gan")
-            print("train\t\ttrain once")
-            print("progress\tprint progress")
-            print("results\t\tprint results")
-            print("exit")
+            case _:
+                print("")
+                print("gen\t\tgenerate gan")
+                print("import\t\timport gan")
+                print("save\t\tsave gan")
+                print("train\t\ttrain once")
+                print("progress\tprint progress")
+                print("results\t\tprint results")
+                print("exit")
 
 
 if __name__ == "__main__":
-    #main()
-    menu()
+    main()
+
 
 
 
