@@ -123,10 +123,7 @@ def main():
     global D
     global G
     while True:
-      
         cmd = input("gan-tool > ")
-        #cmd = "help"
-
         match cmd:
 
             case "gen":
@@ -171,13 +168,5 @@ def main():
                 print("results\t\tprint results")
                 print("exit")
 
-
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
