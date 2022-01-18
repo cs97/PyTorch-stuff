@@ -124,6 +124,52 @@ def main():
     global G
     while True:
         cmd = input("gan-tool > ")
+        
+        if cmd == "help":
+            print("")
+            print("gen\t\tgenerate gan")
+            print("import\t\timport gan")
+            print("save\t\tsave gan")
+            print("train\t\ttrain once")
+            print("progress\tprint progress")
+            print("results\t\tprint results")
+            print("exit")
+
+        if cmd == "gen":
+            netz.inputsize = inputsize
+            netz.generatorinput = generatorinput
+
+            D = netz.Discriminator2()
+            D.to(device)
+            G = netz.Generator()
+            G.to(device)
+
+        if cmd == "import":
+            D = torch.load("d.pt")
+            G = torch.load("g.pt")
+
+        if cmd == "save":
+            torch.save(D, "d.pt")
+            torch.save(G, "g.pt")
+
+        if cmd == "train":
+            start = time.time()
+            train_gan()
+            end = time.time()
+            print('time: %f min' % ((end - start)/60))
+
+        if cmd == "progress":
+            D.plot_progress()
+            G.plot_progress()
+
+        if cmd == "results":
+            print_result()
+
+        if cmd == "exit":
+            break
+        
+  
+'''
         match cmd:
 
             case "gen":
@@ -167,6 +213,7 @@ def main():
                 print("progress\tprint progress")
                 print("results\t\tprint results")
                 print("exit")
+'''
 
 if __name__ == "__main__":
     main()
