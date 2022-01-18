@@ -1,4 +1,12 @@
 # PyTorch-stuff
+### docker
+```
+docker build -t pytorch .
+```
+```
+docker run -it --name torch -h torch -v /home/<myfolder>/:/container_folder/ pytorch
+```
+
 ### gan-tool
 
 ```
