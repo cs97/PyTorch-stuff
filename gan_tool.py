@@ -77,10 +77,13 @@ def train_gan():
 
         for image_data_tensor in dataset:
             D.train(image_data_tensor, torch.cuda.FloatTensor([1.0]))
+            #D.train(image_data_tensor, torch.FloatTensor([1.0]))
 
             D.train(G.forward(generate_random_seed(generatorinput)).detach(), torch.cuda.FloatTensor([0.0]))
+            #D.train(G.forward(generate_random_seed(generatorinput)).detach(), torch.FloatTensor([0.0]))
 
             G.train(D, generate_random_seed(generatorinput), torch.cuda.FloatTensor([1.0]))
+            #G.train(D, generate_random_seed(generatorinput), torch.FloatTensor([1.0]))
 
             progress += 1
             if (progress % 5000 == 0):
