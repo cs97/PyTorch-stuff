@@ -83,7 +83,8 @@ class Discriminator(nn.Module):
         df = pandas.DataFrame(self.progress, columns=['loss'])
         #df.plot(ylim=(0, 1.0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
         df.plot(ylim=(0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
-        plt.show()
+        #plt.show()
+        plt.savefig('progress-D-png')
         pass
 
     pass
@@ -144,7 +145,8 @@ class Generator(nn.Module):
         df = pandas.DataFrame(self.progress, columns=['loss'])
         #df.plot(ylim=(0, 1.0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
         df.plot(ylim=(0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
-        plt.show()
+        #plt.show()
+        plt.savefig('progress-G.png')
         pass
 
     pass
@@ -194,7 +196,8 @@ class template_net(nn.Module):
         df = pandas.DataFrame(self.progress, columns=['loss'])
         #df.plot(ylim=(0, 1.0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
         df.plot(ylim=(0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
-        plt.show()
+        #plt.show()
+        plt.savefig('progress.png')
         pass
     pass
 
