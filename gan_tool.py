@@ -133,7 +133,8 @@ def main():
             print("import\t\timport gan")
             print("save\t\tsave gan")
             print("train\t\ttrain once")
-            print("progress\tprint progress")
+            print("progress-D\tprint progress D")
+            print("progress-G\tprint progress G")            
             print("results\t\tprint results")
             print("exit")
 
@@ -160,8 +161,10 @@ def main():
             end = time.time()
             print('time: %f min' % ((end - start)/60))
 
-        if cmd == "progress":
+        if cmd == "progress-D":
             D.plot_progress()
+            
+        if cmd == "progress-G":
             G.plot_progress()
 
         if cmd == "results":
