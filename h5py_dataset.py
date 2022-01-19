@@ -27,6 +27,7 @@ class InputDataset(Dataset):
       raise IndexError()
     img = numpy.array(self.dataset[str(index)+'.jpg'])
     return torch.cuda.FloatTensor(img) / 255.0
+    #return torch.FloatTensor(img) / 255.0
 
   def plot_image(self, index):
     plt.imshow(numpy.array(self.dataset[str(index)+'.jpg']), interpolation='nearest')
