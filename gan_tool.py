@@ -105,7 +105,8 @@ def print_result():
             axarr[i,j].imshow(img, interpolation='none', cmap='Blues')
             pass
         pass
-    plt.show()
+    #plt.show()
+    plt.savefig('result.png')
 
 def print_one_result():
     #f, axarr = plt.subplots(2,3, figsize=(16,8))
@@ -113,8 +114,9 @@ def print_one_result():
     img =output.detach().cpu().numpy()
     #axarr[i,j].imshow(img, interpolation='none', cmap='Blues')
     plt.imshow(img, interpolation='none', cmap='Blues')
-    plt.show()
-
+    #plt.show()
+    plt.savefig('result.png')
+    
 #==================================================================================
 # Main
 #==================================================================================
