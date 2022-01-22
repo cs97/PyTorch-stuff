@@ -163,18 +163,6 @@ class template_net(nn.Module):
         super().__init__()
         self.counter = 0;
         self.progress = []
-        """
-        self.model = nn.Sequential(
-            nn.Linear(100, 1),
-            nn.Sigmoid()
-        )
-
-        #self.loss_function = nn.MSELoss()
-        #self.loss_function = nn.BCELoss()
-
-        #self.optimiser = torch.optim.SGD(self.parameters(), lr=0.01)
-        #self.optimiser = torch.optim.Adam(self.parameters(), lr=0.0001)
-        """
         pass
 
     def forward(self, inputs):
@@ -191,21 +179,7 @@ class template_net(nn.Module):
         loss.backward()
         self.optimiser.step()
         pass
-
-    def plot_progress(self):
-        df = pandas.DataFrame(self.progress, columns=['loss'])
-        #df.plot(ylim=(0, 1.0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
-        df.plot(ylim=(0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
-        #plt.show()
-        plt.savefig('progress.png')
-        pass
     pass
-
-
-
-
-
-
 
 class Discriminator2(template_net):
     def __init__(self):
@@ -221,6 +195,32 @@ class Discriminator2(template_net):
         self.loss_function = nn.BCELoss()
         self.optimiser = torch.optim.Adam(self.parameters(), lr=0.0001)
 
+    def train(self, inputs, targets):
+        outputs = self.forward(inputs)
+        loss = self.loss_function(outputs, targets)
+        super().train(self, inputs, targets)
+
+
+class Generator2(template_net):
+    def __init__(self):
+        super().__init__()
+        self.model = nn.Sequential(
+            nn.Linear(generatorinput, 3*10*10),
+            nn.LeakyReLU(),
+            nn.LayerNorm(3*10*10),
+            nn.Linear(3*10*10, inputsize[0]*inputsize[1]*inputsize[2]),
+            nn.Sigmoid(),
+            View((inputsize[0], inputsize[1], inputsize[2]))
+        )
+        #self.optimiser = torch.optim.SGD(self.parameters(), lr=0.01)
+        self.optimiser = torch.optim.Adam(self.parameters(), lr=0.0001)
+        pass
+
+    def train(self, D, inputs, targets):
+        g_output = self.forward(inputs)
+        d_output = D.forward(g_output)
+        loss = D.loss_function(d_output, targets)
+        super().train(self, inputs, targets)
 
 
 
