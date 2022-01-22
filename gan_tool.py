@@ -146,7 +146,7 @@ def main():
 
             D = netz.Discriminator2()
             D.to(device)
-            G = netz.Generator()
+            G = netz.Generator2()
             G.to(device)
 
         if cmd == "import":
@@ -189,7 +189,7 @@ def main():
                 netz.generatorinput = generatorinput
                 D = netz.Discriminator2()
                 D.to(device)
-                G = netz.Generator()
+                G = netz.Generator2()
                 G.to(device)
 
             case "import":
