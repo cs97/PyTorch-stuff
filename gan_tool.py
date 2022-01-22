@@ -136,8 +136,7 @@ def main():
             print("import\t\timport gan")
             print("save\t\tsave gan")
             print("train\t\ttrain once")
-            print("progress-D\tprint progress D")
-            print("progress-G\tprint progress G")            
+            print("progress\tprint progress")
             print("results\t\tprint results")
             print("exit")
 
@@ -164,11 +163,16 @@ def main():
             end = time.time()
             print('time: %f min' % ((end - start)/60))
 
-        if cmd == "progress-D":
-            D.plot_progress()
+        if cmd == "progress":
+            df = pandas.DataFrame(D.progress, columns=['loss'])
+            df.plot(ylim=(0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
+            plt.savefig('D.png')
+
+            df = pandas.DataFrame(G.progress, columns=['loss'])
+            df.plot(ylim=(0), figsize=(16,8), alpha=0.1, marker='.', grid=True, yticks=(0, 0.25, 0.5))
+            plt.savefig('G.png')
             
-        if cmd == "progress-G":
-            G.plot_progress()
+
 
         if cmd == "results":
             print_result()
